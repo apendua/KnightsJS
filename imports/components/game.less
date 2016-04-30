@@ -1,0 +1,30 @@
+.game.container {
+  display           : flex;
+  flex-direction    : column;
+  height            : 100vh;
+  background-image  : url('/grass_01.jpg');
+  background-repeat : repeat;
+  background-size   : 640px;
+
+  background-position : 50% 50%;
+
+  .panel {
+    flex-shrink : 1;
+
+    &.filling {
+      flex-grow: 1;      
+    }
+  }
+
+  // http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting
+
+  svg {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently
+                                    not supported by any browser */
+  }
+}

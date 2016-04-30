@@ -1,0 +1,68 @@
+.console {
+
+  width      : 100%;
+  background : rgba(0,0,0,0.5);
+
+  &.hidden {
+    display: none;
+  }
+
+  .menuItems {
+    list-style  : none;
+    width       : 100%;
+    margin      : auto;
+    display     : flex;
+    padding     : 0;
+  }
+
+  .menuItem {
+    flex-grow   : 0;
+    display     : inline-block;
+    cursor      : pointer;
+    background  : rgba(0,0,0,1.0);
+    border      : 3px solid #333;
+    color       : white;
+    text-align  : center;
+    font-family : monospace;
+    line-height : 5vh;
+    font-size   : 2vh;
+    margin      : 1vh;
+    padding     : 0 3vh;
+
+    &.inverted {
+      color        : black;
+      background   : rgba(255,255,255,1.0);
+      border-color : #333;
+    }
+
+    &.hidden {
+      visibility: hidden;
+    }
+
+    &:hover {
+      background : #777;
+    }
+
+     &.disabled {
+
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(0,0,0,0.2) 10px,
+        rgba(0,0,0,0.2) 20px
+      );
+
+      border-color : #222;
+      cursor       : auto;
+      color        : #222;
+    }
+
+
+    &.fill {
+      flex-grow : 1;
+    }
+
+  }
+
+}

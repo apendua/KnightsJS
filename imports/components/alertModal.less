@@ -1,0 +1,53 @@
+.alertModal {
+  
+  position   : absolute;
+  top        : 0;
+  right      : 0;
+  bottom     : 0;
+  left       : 0;
+  background : rgba(0,0,0,0.4);
+  z-index    : 999;
+
+  display        : flex;
+  flex-direction : column;
+
+  &.hidden {
+    display: none;
+  }
+
+  .fill {
+    flex-grow : 1;
+  }
+
+  .alertBody {
+    flex-grow      : 0;
+    width          : 50vw;
+    margin         : auto;
+    padding        : 0vh 2vh 2vh 2vh;
+    border-top     : 2vh solid black;
+    background     : rgba(0,0,0,0.7);
+    color          : white;
+    font-family    : monospace;
+    line-height    : 5vh;
+    font-size      : 2vh;
+  }
+
+  .alertContent {
+    text-align    : center;
+    line-height   : 3vh;    
+    margin-bottom : 1vh;
+  }
+
+  .alertButton {
+    cursor      : pointer;
+    background  : black;
+    border      : 1px solid #444;
+    color       : white;
+    text-align  : center;
+
+    &:hover {
+      background : #222;
+    }
+  }
+
+}
