@@ -45,7 +45,7 @@ export const actorsReducer = (state = [], action) => {
       const oponent = state[action.oponentIdx];
 
       // NOTE: Does it make sense to do these types of things in a middleware?
-      const attackPower = actor.strength * Math.floor(actor.totalHealth / actor.toughness);
+      const attackPower = actor.strength * Math.ceil(actor.totalHealth / actor.toughness);
 
       if (attackPower <= 0) { // nothing happens if the actor is dead
         return state;
