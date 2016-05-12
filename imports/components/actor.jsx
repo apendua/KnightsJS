@@ -51,7 +51,7 @@ export class Actor extends Component {
   }
 
   componentDidMount() {
-    this.interval = Meteor.setInterval(() => {
+    this.interval = setInterval(() => {
       this.setState({
         currentFrame : (this.state.currentFrame + 1) % 6,
         moveProgress : Math.min(1.0, this.state.moveProgress + this.state.moveSpeed),
@@ -61,7 +61,7 @@ export class Actor extends Component {
   }
 
   componentWillUnmount() {
-    Meteor.clearInterval(this.interval);
+    clearInterval(this.interval);
   }
 
   componentWillReceiveProps(nextProps) {

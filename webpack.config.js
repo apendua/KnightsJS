@@ -2,10 +2,11 @@
 const path = require('path');
 
 module.exports = {
-  entry: './index.jsx',
+  entry: [ 'babel-polyfill', './index.jsx' ],
   output: {
     path: './build',
-    filename: 'app.bundle.js',
+    filename: 'bundle.js',
+    publicPath: '/build/',
   },
   module: {
     loaders: [{
@@ -13,14 +14,18 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel-loader',
       query: {
-        presets:[ 'es2015', 'react', 'stage-2' ]
+        presets:[ 'es2015', 'react', 'stage-2' ],
+        plugins: [
+          "transform-runtime",
+          ["babel-root-import", {
+            "rootPathPrefix": "/"
+          }]
+        ],
       }
     }]
   },
   resolve: {
     root: path.resolve('.'),
-    alias: {
-      '/imports': 'imports'
-    }
+    extensions: ['', '.js', '.jsx'],
   }
 };

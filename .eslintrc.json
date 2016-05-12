@@ -8,16 +8,27 @@
     }
   },
   "rules": {
-    "semi": 2,
+    "semi": "error",
     "no-undef": "error",
     "no-unused-vars": "error",
     "prefer-const": "error",
-    "no-const-assign": "error"
+    "no-const-assign": "error",
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1
   },
   "env": {
     "es6": true,
     "browser": true,
     "node": true,
     "mocha": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "15.0"
+    }
   }
 }
