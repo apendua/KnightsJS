@@ -1,0 +1,22 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "semi": 2,
+    "no-undef": "error",
+    "no-unused-vars": "error",
+    "prefer-const": "error",
+    "no-const-assign": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  }
+}
