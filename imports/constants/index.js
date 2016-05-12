@@ -44,7 +44,7 @@ export const animationsDb = {
 
     sheets: [
       {
-        source      : '/knight_320x320.png',
+        source      : '/assets/knight_320x320.png',
         nRows       : 19,
         nColumns    : 8,
         offsetX     : 125,
@@ -54,7 +54,7 @@ export const animationsDb = {
         actorHeight : 160,
       }
       // {
-      //   source      : '/knight_128x128.png',
+      //   source      : '/assets/knight_128x128.png',
       //   nRows       : 19,
       //   nColumns    : 8,
       //   offsetX     : 50,
