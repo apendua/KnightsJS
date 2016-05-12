@@ -7,7 +7,7 @@ import { Tracker } from 'meteor/tracker';
 import { render } from 'react-dom';
 import { Actions } from '/imports/collections';
 import { Game } from '/imports/components/game';
-import { setUserId } from '/imports/actions';
+import { setUserId, setPreloading } from '/imports/actions';
 import { store } from './store';
 
 Meteor.startup(() => {
@@ -19,7 +19,10 @@ Meteor.startup(() => {
 
   render(
     <Provider store={store}>
-      <Game onCookieRequested={createUserIdCookie}/>
+      <Game
+        onCookieRequested  = {createUserIdCookie}
+        onNewGameRequested = {createNewGame}
+      />
     </Provider>,
     document.getElementById('render-target')
   );
@@ -29,6 +32,15 @@ Meteor.startup(() => {
   // ----------------------------------------
 
   Tracker.autorun(function () {
+    const gameId = FlowRouter.getParam('gameId');
+    
+    if (gameId) {
+      store.dispatch(setPreloading(true));
+      Meteor.subscribe('actionsForGame', gameId, () => {
+        store.dispatch(setPreloading(false));
+      });
+    }
+
     Actions.find({
       gameId: FlowRouter.getParam('gameId'),
 
@@ -45,7 +57,7 @@ Meteor.startup(() => {
  * Return current userId if cookie is set.
  */
 function getUserIdCookie () {
-  for (let chunk of document.cookie.split(/\s*;\s*/)) {
+  for (const chunk of document.cookie.split(/\s*;\s*/)) {
     const data = chunk.split('=');
     if (data[0] === 'userId') {
       return data[1];
@@ -62,6 +74,22 @@ function createUserIdCookie () {
   const expires = Date.now() + 1000 * 3600 * 24 * 7; // 7 days
   document.cookie = 'userId=' + userId + ';expires=' + new Date(expires).toUTCString();
   store.dispatch({ ...setUserId(userId), meteor: { skip: true }});
+}
+
+function createNewGame () {
+  return new Promise(resolve => {
+
+    Meteor.call('createNewGame', (err, res) => {
+      if (err) {
+        console.error(err);
+      } else {
+        resolve(res);
+      }
+    });
+
+  }).then(gameId => {
+    FlowRouter.go('game', { gameId });
+  });
 }
 
 

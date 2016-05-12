@@ -1,5 +1,3 @@
-import { Meteor } from 'meteor/meteor';
-import { MAP_ROWS, MAP_COLUMNS } from '/imports/constants';
 import { TIMING_FRAMES_PER_SECOND, TIMING_MOVE_BY_ONE_FIELD } from '/imports/constants';
 
 /**
@@ -102,7 +100,7 @@ export function setPreloading (value) {
     type   : SET_PRELOADING,
     value  : !!value,
     meteor : { skip: true },
-  }
+  };
 }
 
 export const SET_USER_ID = 'SET_USER_ID';
@@ -121,7 +119,7 @@ export function claimAttackingTeam () {
       type   : CLAIM_ATTACKING_TEAM,
       userId : userId,
     });
-  }
+  };
 }
 
 export const CLAIM_DEFENDING_TEAM = 'CLAIM_DEFENDING_TEAM';
@@ -132,7 +130,7 @@ export function claimDefendingTeam () {
       type   : CLAIM_DEFENDING_TEAM,
       userId : userId,
     });
-  }
+  };
 }
 
 

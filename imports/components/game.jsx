@@ -1,18 +1,13 @@
 import React from 'react';
-import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Pattern } from './pattern';
 import { Board } from './board';
 import { Toolbar } from './toolbar';
 import { MenuModal } from './menuModal';
 import { AlertModal } from './alertModal';
-import { createMapping } from '/imports/helpers/mappings';
 import { createNewGame, moveActor, startGame, nextActor, setPreloading} from '/imports/actions';
 import {
   DEFENDER,
   ATTACKER,
-
-  MAP_COLUMNS,
-  MAP_ROWS,
   SVG_WIDTH,
   SVG_HEIGHT,
 
@@ -30,7 +25,6 @@ class Game extends React.Component {
     this.handleMenuOpen = this.handleMenuOpen.bind(this);
     this.handleActorMove = this.handleActorMove.bind(this);
     this.handleAlertButton = this.handleAlertButton.bind(this);
-    this.handleCreateNewGame = this.handleCreateNewGame.bind(this);
   }
 
   getDimensions ({ margin = 10 } = {}) {
@@ -63,20 +57,8 @@ class Game extends React.Component {
 
   componentDidMount() {
     const { store } = this.context;
-    const { dispatch } = store;
-    const { userId } = store.getState();
-
     this.unsubscribe = store.subscribe(() => {
       this.forceUpdate();
-    });
-    this.tracker = Tracker.autorun(() => {
-      const gameId = FlowRouter.getParam('gameId');
-      if (gameId) {
-        dispatch(setPreloading(true));
-        Meteor.subscribe('actionsForGame', gameId, (err) => {
-          dispatch(setPreloading(false));
-        });
-      }
     });
   }
 
@@ -103,7 +85,6 @@ class Game extends React.Component {
 
   componentWillUnmount() {
     this.unsubscribe();
-    this.tracker.stop();
   }
 
   handleActorMove (actor, movePath, oponent) {
@@ -115,22 +96,6 @@ class Game extends React.Component {
       return;
     }
     store.dispatch(moveActor(actor, movePath, oponent));
-  }
-
-  handleCreateNewGame () {
-    return new Promise(resolve => {
-
-      Meteor.call('createNewGame', (err, res) => {
-        if (err) {
-          console.error(err);
-        } else {
-          resolve(res);
-        }
-      });
-
-    }).then(gameId => {
-      FlowRouter.go('game', { gameId });
-    });
   }
 
   handleAlertButton () {
@@ -147,6 +112,7 @@ class Game extends React.Component {
   render () {
     const { store } = this.context;
     const state = store.getState();
+    const { onNewGameRequested } = this.props;
 
     const currentActor = this.getCurrentActor();
     const { fieldWidth, fieldHeight, offsetX, offsetY } = this.getDimensions();
@@ -178,11 +144,11 @@ class Game extends React.Component {
         <div className="panel">
           <Toolbar
             onMenuOpen      = {this.handleMenuOpen}
-            onCreateNewGame = {this.handleCreateNewGame}
+            onCreateNewGame = {onNewGameRequested}
           />
         </div>
         <MenuModal ref='menuModal'
-          onCreateNewGame={this.handleCreateNewGame}
+          onCreateNewGame={onNewGameRequested}
         />
         <AlertModal
           ref           = 'alertModal'
@@ -198,7 +164,8 @@ class Game extends React.Component {
 };
 
 Game.propTypes = {
-  onCookieRequested: React.PropTypes.func,
+  onCookieRequested  : React.PropTypes.func,
+  onNewGameRequested : React.PropTypes.func,
 };
 
 Game.contextTypes = {

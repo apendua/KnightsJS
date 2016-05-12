@@ -1,6 +1,6 @@
 import { ATTRIBUTES, KNIGHT, ATTACKER, DEFENDER } from '/imports/constants';
 import { createMapOfObstacles, getMapValue, generateFields } from '/imports/helpers/map';
-import { Random } from 'meteor/random';
+import { randomFraction } from '/imports/helpers/random';
 
 export function generateGame (nRows, nColumns) {
   const game = {};
@@ -37,7 +37,7 @@ export function generateGame (nRows, nColumns) {
 function mapGenerator (nRows, nColumns) {
   return ({ row: i, column: j }) => {
     return {
-      isBlocked: Random.fraction() < 0.4 * Math.pow(1-2*Math.abs(j-nColumns/2)/nColumns, 2)
+      isBlocked: randomFraction() < 0.4 * Math.pow(1-2*Math.abs(j-nColumns/2)/nColumns, 2)
     };
   };
 }
@@ -55,7 +55,7 @@ function createActors (perTeamAmount, nRows, nColumns, mapOfObstacles) {
     while (amountSoFar < perTeamAmount) {
 
       const amount = Math.min(perTeamAmount - amountSoFar,
-                              Math.floor(20 + Random.fraction() * 60));
+                              Math.floor(20 + randomFraction() * 60));
 
       actors.push({ side, amount });
       amountSoFar += amount;
@@ -118,8 +118,8 @@ function placeActorOnMap (side, nRows, nColumns, mapOfObstacles, placesUsed) {
   // NOTE: There's the maximal number of 100 attempts.
   for (let n=0; n<100; n+=1) {
 
-    row    = Math.floor(Random.fraction() * nRows);
-    column = Math.floor(Random.fraction() * 4);
+    row    = Math.floor(randomFraction() * nRows);
+    column = Math.floor(randomFraction() * 4);
 
     if (side === DEFENDER) {
       column = nColumns - 1 - column;

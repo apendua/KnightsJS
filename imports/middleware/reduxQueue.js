@@ -1,5 +1,3 @@
-import { Meteor } from 'meteor/meteor';
-
 export const createQueue = () => {
 
   return store => {
@@ -17,7 +15,7 @@ export const createQueue = () => {
       const state = store.getState();
       const delay = (!state.isPreloading && action.queue && action.queue.delay) || 0;
 
-      const timeout = Meteor.setTimeout(() => {
+      const timeout = setTimeout(() => {
 
         const newAction = { ...action, queue: { skip: true } };
 
@@ -37,7 +35,7 @@ export const createQueue = () => {
       }
 
       if (current && action.queue && action.queue.noWait) {
-        Meteor.clearTimeout(current.timeout);
+        clearTimeout(current.timeout);
         emptyQueue(true); // empty immediately
       }
 

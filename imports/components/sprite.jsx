@@ -1,21 +1,21 @@
 import { animationsDb } from '/imports/constants';
 import React from 'react';
-import { Random } from 'meteor/random';
+import { randomId } from '/imports/helpers/random';
 import _ from 'lodash';
 
 export class Sprite extends React.Component {
 
   constructor(props) {
     super(props);
-    this.spriteId = Random.id();
+    this.spriteId = randomId();
     this.animationSetup = this.getAnimationSetup(props);
-    this.randomFrameOffset = Math.floor(100 * Random.fraction());
+    this.randomFrameOffset = Math.floor(100 * Math.random());
     this.state = {
       currentFrame : 0
     };
   }
 
-  componentWillUpdate (nextProps, nextState) {
+  componentWillUpdate (nextProps) {
 
     if (nextProps.animation !== this.props.animation ||
         nextProps.actorType !== this.props.actorType ||
@@ -76,9 +76,9 @@ export class Sprite extends React.Component {
   render () {
 
     const {
-      direction, animation,
+      direction,
       positionX, positionY,
-      actorType, height } = this.props;
+      height } = this.props;
 
     const {
       direction: frameDirection,
