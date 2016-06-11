@@ -40,6 +40,13 @@ module.exports = {
     new ExtractTextPlugin('styles.css', { allChunks: true }),
 
   ]).concat(process.env.WEBPACK_ENV==='dev' ? [] : [
+
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+
     new webpack.optimize.OccurenceOrderPlugin(),
 
     // minify
