@@ -21,6 +21,8 @@ export const ATTRIBUTES = {
   },
 };
 
+export const ASSETS_PREFIX = '';
+
 export const MAP_COLUMNS = 12;
 export const MAP_ROWS    = 16;
 export const SVG_WIDTH   = 1024;

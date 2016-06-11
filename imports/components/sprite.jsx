@@ -1,4 +1,4 @@
-import { animationsDb } from '/imports/constants';
+import { animationsDb, ASSETS_PREFIX } from '/imports/constants';
 import React from 'react';
 import { randomId } from '/imports/helpers/random';
 import _ from 'lodash';
@@ -122,7 +122,7 @@ export class Sprite extends React.Component {
           </clipPath>
         </defs>
         <image
-          xlinkHref = {source}
+          xlinkHref = {ASSETS_PREFIX + source}
           transform = {mirror ? `translate(${spriteWidth},0),scale(-1,1)` : ''}
           x         = {-frameOffsetX}
           y         = {-frameOffsetY}
