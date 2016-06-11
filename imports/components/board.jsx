@@ -5,6 +5,7 @@ import { FieldSet } from './fieldSet';
 import { createNeighborsGenerator, getDirection } from '/imports/helpers/neighbors';
 import { createMapping, createInverseMapping } from '/imports/helpers/mappings';
 import { memoize } from '/imports/helpers/memoize';
+import { closest } from '/imports/helpers/dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {
   createMapOfDistances,
@@ -92,7 +93,7 @@ export class Board extends React.Component {
         nColumns,
         currentCoords,
         mapOfObstacles
-      )
+      );
     }, (evaluate) => (
       evaluate(
         this.props.nRows,
@@ -114,7 +115,7 @@ export class Board extends React.Component {
       const distance = getMapValue(targetCoords, mapOfDistances);
 
       return distance > distanceLimit ? [] :
-        findPathTo(targetCoords, neighborsGenerator, mapOfDistances)
+        findPathTo(targetCoords, neighborsGenerator, mapOfDistances);
 
     }, (evaluate) => {
 
@@ -131,7 +132,7 @@ export class Board extends React.Component {
     this.getFieldsWithinDistance = memoize(
       (nRows, nColumns, distance, mapOfDistances) => {
         const fields = [];
-        for (let { row, column } of generateFields(nRows, nColumns)) {
+        for (const { row, column } of generateFields(nRows, nColumns)) {
           if (getMapValue({ row, column }, mapOfDistances) <= distance) {
             fields.push({ row, column });
           }
@@ -143,7 +144,7 @@ export class Board extends React.Component {
           this.props.nRows,
           this.props.nColumns,
           distance,
-          this.getMapOfDistances(),
+          this.getMapOfDistances()
         );
       }
     );
@@ -192,9 +193,8 @@ export class Board extends React.Component {
   }
 
   getMapCoords ({ x, y }) {
-    const svg = $(this.root).closest('svg')[0];
+    const svg = closest(this.root, 'svg');
     const CTM = svg.getScreenCTM();
-
     const pt = svg.createSVGPoint();
 
     pt.x = x;
