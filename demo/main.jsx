@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render } from 'react-dom';
-import { Game } from './imports/components/game.jsx';
+import { Game } from '/imports/components/game.jsx';
 import { setUserId } from '/imports/actions';
 import { randomId } from '/imports/helpers/random';
 import { createStore, applyMiddleware } from 'redux';
@@ -12,7 +12,7 @@ import { rootReducer } from '/imports/reducers';
 import { NEW_GAME_CREATED } from '/imports/actions';
 import { MAP_ROWS, MAP_COLUMNS } from '/imports/constants';
 import { generateGame } from '/imports/helpers/generators';
-import "./styles.less";
+import "./main.less";
 
 const queueMiddleware = createQueue();
 const loggerMiddleware = createLogger();

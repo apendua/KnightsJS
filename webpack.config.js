@@ -1,12 +1,9 @@
-
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-
-
 module.exports = {
-  entry: [ 'babel-polyfill', './index.jsx' ],
+  entry: [ 'babel-polyfill', './demo/main.jsx' ],
   output: {
     path: './build',
     filename: 'bundle.js',
@@ -56,6 +53,7 @@ module.exports = {
   ]),
   devServer: {
     port: process.env.PORT || 3000,
+    contentBase: './demo/static',
     historyApiFallback: true
   }
 };
