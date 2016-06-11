@@ -118,8 +118,7 @@ export function createNeighborsGenerator (...args) {
         return;
       }
 
-      for (let n of neighborsGenerator({ row, column })) {
-
+      for (const n of neighborsGenerator({ row, column })) {
 
         if (n.row >= 0 &&
             n.row < nRows &&
@@ -129,7 +128,7 @@ export function createNeighborsGenerator (...args) {
           yield n;
         }
       }
-    }
+    };
 
   } else {
     return neighborsGenerator;

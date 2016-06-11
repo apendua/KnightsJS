@@ -4,7 +4,7 @@ import { TIMING_FRAMES_PER_SECOND, TIMING_MOVE_BY_ONE_FIELD } from '/imports/con
  * Only useful to bypass creating game on the server.
  */
 export const NEW_GAME_CREATED = 'NEW_GAME_CREATED';
-function newGameCreated (gameSetup) {
+export function newGameCreated (gameSetup) {
   return {
     type : NEW_GAME_CREATED,
     ...gameSetup

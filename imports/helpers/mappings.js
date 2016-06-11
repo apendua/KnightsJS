@@ -120,7 +120,7 @@ export function createInverseMapping ({
 
     let i = Math.floor(y / h);
     let j = Math.floor(x / w);
-    let r = i % 6;
+    const r = i % 6;
 
     if (r === 0) {
       if (j % 2 === 0) {

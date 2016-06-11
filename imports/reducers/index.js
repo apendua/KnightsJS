@@ -122,7 +122,7 @@ export const rootReducer = (state = {
         actorHasMoved : false,
         currentActor  : nextActor,
         currentRound  : nextActor < state.currentActor ? state.currentRound + 1 : state.currentRound,
-      }
+      };
 
     case BEGIN_ACTOR_MOVE:
 

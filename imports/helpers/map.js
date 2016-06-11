@@ -48,9 +48,9 @@ export function setMapValue ({ row, column }, map, value) {
  * @returns {Boolean[][]} map
  */
 export function createMapOfObstacles (nRows, nColumns, ...rest) {
-  const map = createMap(nRows, nColumns, ({ row, column }) => false);
-  for (let obstacles of rest) {
-    for (let o of obstacles) setMapValue(o, map, true);
+  const map = createMap(nRows, nColumns, () => false);
+  for (const obstacles of rest) {
+    for (const o of obstacles) setMapValue(o, map, true);
   }
   return map;
 }
@@ -80,7 +80,7 @@ export function createMapOfDistances (nRows, nColumns, { row, column }, mapOfObs
 
     const fieldsToUpdate = [];
 
-    for (let field of currentFields) {
+    for (const field of currentFields) {
 
       const fieldDistance = getMapValue(field, mapOfDistances);
       const isObstacle = !!mapOfObstacles && getMapValue(field, mapOfObstacles);
@@ -95,7 +95,7 @@ export function createMapOfDistances (nRows, nColumns, { row, column }, mapOfObs
 
       setMapValue(field, mapOfDistances, currentDistance);
 
-      for (let neighbor of neighborsGenerator(field)) {
+      for (const neighbor of neighborsGenerator(field)) {
         fieldsToUpdate.push(neighbor);
       }
     }
@@ -166,7 +166,7 @@ export function findPathTo ({ row, column }, neighborsGenerator, mapOfDistances,
   }
   let nextMove = null;
 
-  for (let move of neighborsGenerator({ row, column })) {
+  for (const move of neighborsGenerator({ row, column })) {
     const distance = getMapValue(move, mapOfDistances);
     if (distance < currentDistance) {
       currentDistance = distance;

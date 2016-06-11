@@ -32,7 +32,7 @@ export const actorsReducer = (state = [], action) => {
             // status
 
             totalHealth : rawActor.amount * rawActor.toughness,
-          }
+          };
         });
       } else {
         return [];

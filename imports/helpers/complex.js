@@ -47,12 +47,12 @@ export class Complex {
     const loops = [];
 
     // clean up
-    for (let e of this.edges.values()) {
+    for (const e of this.edges.values()) {
       delete e.iter;
     }
 
     let i = 0;
-    for (let e of this.edges.values()) {
+    for (const e of this.edges.values()) {
       i += 1;
       if (e.value <= 0 || e.iter !== undefined) {
         continue;
@@ -116,7 +116,7 @@ function findLoopStartingFromEdge (edge, iter, loop = { nodes: [], edges: [] }) 
     if (e.head === loop.edges[loop.edges.length-1].tail) {
       return false;
     }
-    let v = V.sub(e.head, e.tail);
+    const v = V.sub(e.head, e.tail);
     let a = V.angle(edgeVector, v);
     if (isNaN(a)) {
       return false;

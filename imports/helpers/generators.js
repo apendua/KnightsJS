@@ -12,7 +12,7 @@ export function generateGame (nRows, nColumns) {
 
   game.obstacles = [];
 
-  for (let { row, column } of generateFields(nRows, nColumns)) {
+  for (const { row, column } of generateFields(nRows, nColumns)) {
     const field = generator({ row, column });
     if (field.isBlocked) {
       game.obstacles.push({ row, column });
@@ -35,7 +35,7 @@ export function generateGame (nRows, nColumns) {
 }
 
 function mapGenerator (nRows, nColumns) {
-  return ({ row: i, column: j }) => {
+  return ({ column: j }) => {
     return {
       isBlocked: randomFraction() < 0.4 * Math.pow(1-2*Math.abs(j-nColumns/2)/nColumns, 2)
     };
@@ -65,7 +65,7 @@ function createActors (perTeamAmount, nRows, nColumns, mapOfObstacles) {
   // -----------------------------------------
   // --- try placing all the actors on map ---
   // -----------------------------------------
-  for (let actor of actors) {
+  for (const actor of actors) {
     const { row, column } = placeActorOnMap(actor.side, nRows, nColumns, mapOfObstacles, places);
     const type = KNIGHT;
 

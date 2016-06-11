@@ -59,7 +59,7 @@ export function inv (u, v) {
  * value relatively to the interior region bounded by the path.
  */
 export function* grow (path, value) {
-  for (let [p, q, r] of walk3(path)) {
+  for (const [p, q, r] of walk3(path)) {
     const v1  = normalize(sub(p, q));
     const v2  = normalize(sub(r, q));
     const cos = dot(v1, v2);
@@ -101,7 +101,7 @@ export function angle (u, v) {
  */
 export function orientation (path) {
   let sum = 0;
-  for (let [p, q, r] of walk3(path)) {
+  for (const [p, q, r] of walk3(path)) {
     sum += angle(sub(q, p), sub(r, q));
   }
   return Math.round(sum / (2 * Math.PI));
@@ -112,7 +112,7 @@ export function orientation (path) {
  */
 export function index (p, path) {
   let sum = 0;
-  for (let [q, r] of walk2(path)) {
+  for (const [q, r] of walk2(path)) {
     sum += angle(sub(q, p), sub(r, p));
   }
   return Math.round(sum / (2 * Math.PI));
@@ -123,7 +123,7 @@ export function index (p, path) {
  */
 export function* walk2 (path) {
   let p0, p1;
-  for (let p of path) {
+  for (const p of path) {
     if (p1) {
       yield [ p1, p ];
     } else {
@@ -141,7 +141,7 @@ export function* walk2 (path) {
  */
 export function* walk3 (path) {
   let p0, p1, p2, p3;
-  for (let p of path) {
+  for (const p of path) {
     if (p2 && p3) {
       yield [ p2, p3, p ];
     } else if (p0) {

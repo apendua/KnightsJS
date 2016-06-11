@@ -52,7 +52,7 @@ export const actorReducer = (state = {}, action) => {
           isAttacking : true,
           isFinishing : action.isFinishing,
           direction   : action.direction,
-        }
+        };
 
       } else if (state.idx === action.oponentIdx) {
 
@@ -62,7 +62,7 @@ export const actorReducer = (state = {}, action) => {
           isHit     : true,
           isDying   : action.isFinishing,
           direction : action.direction > 0 ? action.direction - 4 : action.direction + 4,
-        }
+        };
 
       } else {
         return state;
@@ -78,7 +78,7 @@ export const actorReducer = (state = {}, action) => {
           isAttacking : false,
           isFinishing : false,
           direction   : 0,
-        }
+        };
 
       } else if (state.idx === action.oponentIdx) {
 
@@ -89,7 +89,7 @@ export const actorReducer = (state = {}, action) => {
           isDying     : false,
           totalHealth : Math.max(0, state.totalHealth - action.attackPower),
           direction   : action.isFinishing ? state.direction : 0,
-        }
+        };
 
       } else {
         return state;
