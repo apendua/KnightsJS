@@ -94,7 +94,7 @@ export class Actor extends Component {
     const { movePath } = this.props;
 
     if (movePath && movePath.length > 0) {
-      return indexOnPath = Math.floor(moveProgress * (movePath.length - 1));
+      return Math.floor(moveProgress * (movePath.length - 1));
     } else {
       return -1;
     }
