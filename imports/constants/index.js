@@ -21,7 +21,7 @@ export const ATTRIBUTES = {
   },
 };
 
-export const ASSETS_PREFIX = '';
+export const ASSETS_PREFIX = 'http://apendua.github.io/KnightsJS';
 
 export const MAP_COLUMNS = 12;
 export const MAP_ROWS    = 16;
