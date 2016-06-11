@@ -1,7 +1,9 @@
 # KnightsJS
 
-It's a simple demo project which I've built for a Meteor talk
-at a JavasScript Meetup in Kraków.
+It's a simple [React](https://facebook.github.io/react/) project
+inspired by good old [Homm3](https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_III).
+I've built it for a Meteor talk at a JavasScript Meetup in Kraków.
+A live demo is available [here](http://apendua.github.io/KnightsJS/).
 
 ## Installing and running
 
