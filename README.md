@@ -20,3 +20,14 @@ meteor
 and navigate your browser to [http://localhost:3000](http://localhost:3000).
 
 ![screen](https://raw.githubusercontent.com/apendua/KnightsJS/master/public/screen_01.png)
+
+## WebPack
+
+You will need to install `webpack` globally first
+```
+npm install -g webpack webpack-dev-server
+```
+Then go to the project root and run
+```
+webpack-dev-sever
+```
