@@ -1,6 +1,9 @@
 
+const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
 
 module.exports = {
   entry: [ 'babel-polyfill', './index.jsx' ],
@@ -32,9 +35,25 @@ module.exports = {
     root: path.resolve('.'),
     extensions: ['', '.js', '.jsx'],
   },
-  plugins: [
+  plugins: ([
+
+    // avoid publishing files when compilation failed
+    new webpack.NoErrorsPlugin(),
+
     new ExtractTextPlugin('styles.css', { allChunks: true }),
-  ],
+
+  ]).concat(process.env.WEBPACK_ENV==='dev' ? [] : [
+    new webpack.optimize.OccurenceOrderPlugin(),
+
+    // minify
+    new webpack.optimize.UglifyJsPlugin({
+      output   : { comments: false },
+      exclude  : [ /\.min\.js$/gi ], // skip pre-minified libs
+      compress : {
+        warnings: false
+      }
+    })
+  ]),
   devServer: {
     port: process.env.PORT || 3000,
     historyApiFallback: true
