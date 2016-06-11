@@ -24,7 +24,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-root-import": "^3.2.2",
-    "eslint": "^2.9.0",
+    "eslint": "^2.11.1",
     "eslint-plugin-react": "^5.1.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
