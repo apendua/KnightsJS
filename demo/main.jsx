@@ -42,6 +42,9 @@ startup(() => {
     document.getElementById('render-target')
   );
 
+  // immediately create a new game
+  createNewGame();
+
 });
 
 /**
@@ -82,7 +85,7 @@ function createNewGame () {
         ...generateGame(MAP_ROWS, MAP_COLUMNS)
       });
       resolve(gameId);
-    }, 1000);
+    }, 500);
   });
 }
 
