@@ -156,21 +156,23 @@ export const rootReducer = (state = {
 
     case NEW_GAME_CREATED:
 
+      const actors = actorsReducer(state.actors, action);
+
       return { ...state,
 
         // NOTE: We are not messing with the current userId
 
         currentGameId: action.gameId || '',
-        currentActor : -1,
-        currentRound : -1,
-        actorHasMoved:true,
-        attackerId   : '',
-        defenderId   : '',
+        currentActor : action.onePlayer ? findNextActor(-1, actors) : -1,
+        currentRound : action.onePlayer ? 0 : -1,
+        actorHasMoved: action.onePlayer ? false : true,
+        attackerId   : action.onePlayer ? state.userId : '',
+        defenderId   : action.onePlayer ? state.userId : '',
         nRows        : action.nRows,
         nColumns     : action.nColumns,
 
         obstacles    : obstaclesReducer(state.obstacles, action),
-        actors       : actorsReducer(state.actors, action),
+        actors       : actors,
       };
 
     default:
