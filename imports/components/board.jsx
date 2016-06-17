@@ -176,7 +176,7 @@ export class Board extends React.Component {
       const { actors } = this.props;
 
       const theCoords = this.getMapCoords({ x: e.clientX, y: e.clientY });
-      const oponent = actors.find(a => areTheSameField(a, theCoords));
+      const oponent = actors.find(a => a.totalHealth > 0 && areTheSameField(a, theCoords));
 
       this.props.onActorMove(
         this.props.currentActor,
